@@ -26,8 +26,9 @@ module MyWordMethods
     end
   end
 
-  def wordify(digits, groupno, loopno = 0)
+  def wordify(digits, groupno)
     num_words = ""
+    loopno = 0
     teens = false
     digits[groupno].each do |x|
       if loopno == 0 && x != 0
