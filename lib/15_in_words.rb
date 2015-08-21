@@ -10,6 +10,7 @@ module MyWordMethods
     @@mapTens = %w(x x twenty thirty forty fifty sixty seventy eighty ninety)
     @@mapHundred = 'hundred'
     @@mapMagnitudes = %w(thousand million billion trillion)
+    return @@mapOnes[0] if self == 0
     #digits of fixnum in array
     digs = num.to_s.split('').map{|x| x.to_i}
     #adds 0's to front of digits until length is a multiple of 3 for recursion
@@ -17,13 +18,8 @@ module MyWordMethods
       digs.unshift(0)
     end
     digs = digs.each_slice(3).to_a
-    #gives easy answers to anything under 20, else calls 'wordify' for work
-    if num < 20
-      mapUnderTwenty[num]
-    else
-      grouping = 0
-      wordify(digs, grouping)
-    end
+    grouping = 0
+    wordify(digs, grouping)
   end
 
   def wordify(digits, groupno)
